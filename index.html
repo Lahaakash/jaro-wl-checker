@@ -77,8 +77,8 @@
       text-shadow: 1px 1px 2px black;
     }
 
-    /* Mobile background image */
-    @media screen and (max-width: 600px) {
+    /* Better mobile background support */
+    @media screen and (max-width: 768px), screen and (orientation: portrait) {
       body {
         background-image: url('mobile-bg.jpg');
         background-size: cover;
@@ -135,6 +135,10 @@
         result.style.color = "white";
       }
     }
+
+    window.onload = () => {
+      document.getElementById("walletInput").focus();
+    };
   </script>
 </body>
 </html>
