@@ -1,17 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Jaro Whitelist Checker</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+      min-height: 100vh;
+      backdrop-filter: brightness(0.85);
+    }
+    h1 {
+      font-size: 40px;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 5px #000;
+    }
+    input {
+      padding: 12px;
+      font-size: 18px;
+      border-radius: 8px;
+      border: none;
+      width: 80%;
+      max-width: 400px;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      border-radius: 8px;
+      border: none;
+      background-color: red;
+      color: yellow;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    #result {
+      margin-top: 25px;
+      font-size: 22px;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px #000;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Jaro Whitelist Checker</h1>
-    <input type="text" id="walletInput" placeholder="Enter your wallet address" />
-    <button onclick="checkWhitelist()">Check</button>
-    <p id="result"></p>
-  </div>
-  <script src="script.js"></script>
+  <h1>Jaro Whitelist Checker</h1>
+  <input type="text" id="walletInput" placeholder="Enter your wallet address" />
+  <br />
+  <button onclick="checkWhitelist()">Check Whitelist</button>
+  <div id="result"></div>
+
+  <script>
+    async function checkWhitelist() {
+      const input = document.getElementById("walletInput").value.trim().toLowerCase();
+      const result = document.getElementById("result");
+
+      try {
+        const response = await fetch("whitelist.json");
+        const whitelist = await response.json();
+
+        if (whitelist.includes(input)) {
+          result.textContent = "Congratulations, you are in whitelist, welcome to Jaro!";
+          result.style.color = "yellow";
+        } else {
+          result.textContent = "Sorry, your address is not on the list.";
+          result.style.color = "red";
+        }
+      } catch (error) {
+        result.textContent = "Error loading whitelist. Try again later.";
+        result.style.color = "white";
+      }
+    }
+  </script>
 </body>
 </html>
