@@ -26,7 +26,7 @@
     }
 
     .box {
-      background-color: rgba(255, 0, 0, 0.3); /* Transparent red */
+      background-color: rgba(255, 0, 0, 0.3);
       border: 3px solid yellow;
       border-radius: 20px;
       padding: 40px 30px;
@@ -76,6 +76,27 @@
       font-weight: bold;
       color: white;
       text-shadow: 1px 1px 2px black;
+    }
+
+    /* Mobile tweaks */
+    @media (max-width: 500px) {
+      .box {
+        padding: 25px 20px;
+        border-radius: 16px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      input, button {
+        font-size: 15px;
+        padding: 10px;
+      }
+
+      #result {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
