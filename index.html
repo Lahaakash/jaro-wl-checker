@@ -5,64 +5,88 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Jaro Whitelist Checker</title>
   <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-image: url('background.jpg');
       background-size: cover;
-      background-position: top center;
+      background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
-      color: white;
-      text-align: center;
-      padding: 100px 20px;
-      min-height: 100vh;
       display: flex;
-      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      backdrop-filter: brightness(0.85);
+      color: white;
+    }
+
+    .box {
+      background-color: rgba(255, 0, 0, 0.3); /* Transparent red */
+      border: 3px solid yellow;
+      border-radius: 20px;
+      padding: 40px 30px;
+      text-align: center;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 0 20px rgba(255, 255, 0, 0.5);
+      width: 90%;
+      max-width: 500px;
     }
 
     h1 {
-      font-size: 40px;
-      margin-bottom: 30px;
-      text-shadow: 2px 2px 5px #000;
+      font-size: 32px;
+      margin-bottom: 25px;
+      color: yellow;
+      text-shadow: 1px 1px 3px #000;
     }
 
     input {
       padding: 12px;
-      font-size: 18px;
+      font-size: 16px;
       border-radius: 8px;
       border: none;
-      width: 80%;
-      max-width: 400px;
+      width: 100%;
       margin-bottom: 20px;
+      outline: none;
     }
 
     button {
       padding: 12px 24px;
-      font-size: 18px;
+      font-size: 16px;
       border-radius: 8px;
       border: none;
-      background-color: red;
-      color: yellow;
+      background-color: yellow;
+      color: red;
       cursor: pointer;
       font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ffd700;
     }
 
     #result {
-      margin-top: 25px;
-      font-size: 22px;
+      margin-top: 20px;
+      font-size: 18px;
       font-weight: bold;
-      text-shadow: 1px 1px 2px #000;
+      color: white;
+      text-shadow: 1px 1px 2px black;
     }
   </style>
 </head>
 <body>
-  <h1>Jaro Whitelist Checker</h1>
-  <input type="text" id="walletInput" placeholder="Enter your wallet address" />
-  <br />
-  <button onclick="checkWhitelist()">Check Whitelist</button>
-  <div id="result"></div>
+  <div class="box">
+    <h1>Jaro Whitelist Checker</h1>
+    <input type="text" id="walletInput" placeholder="Enter your wallet address" />
+    <br />
+    <button onclick="checkWhitelist()">Check Whitelist</button>
+    <div id="result"></div>
+  </div>
 
   <script>
     async function checkWhitelist() {
